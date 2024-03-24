@@ -34,7 +34,16 @@ public class StockController {
   public ResponseEntity<?> getStocksById(@RequestParam("id") long id) {
     List<Stock> stocks = stockRepository.findByAssetId(id);
     if (stocks.isEmpty()) {
-      throw new CustomException("ID " + id + " doesn't exist. Please check.");
+      throw new CustomException("Asset ID " + id + " doesn't exist. Please check.");
+    }
+    return ResponseEntity.ok(stocks);
+  }
+
+  @GetMapping("/bySymbol")
+  public ResponseEntity<?> getStocksBySymbol(@RequestParam("symbol") String symbol) {
+    List<Stock> stocks = stockRepository.findBySymbol(symbol);
+    if (stocks.isEmpty()) {
+      throw new CustomException("Symbol " + symbol + " doesn't exist. Please check.");
     }
     return ResponseEntity.ok(stocks);
   }
