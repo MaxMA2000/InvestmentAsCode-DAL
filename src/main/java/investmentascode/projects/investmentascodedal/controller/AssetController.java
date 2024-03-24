@@ -4,9 +4,7 @@ package investmentascode.projects.investmentascodedal.controller;
 import investmentascode.projects.investmentascodedal.model.Asset;
 import investmentascode.projects.investmentascodedal.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +20,16 @@ public class AssetController {
   }
 
   @GetMapping
-  public List<Asset> getAllAssets(){
+  public List<Asset> getAllAssets() {
     return assetRepository.findAll();
   }
+
+  @GetMapping("/byType")
+  public List<Asset> getAssetsByType(@RequestParam("type") String type) {
+    return assetRepository.findByType(type);
+  }
+
+
+  
 }
+
