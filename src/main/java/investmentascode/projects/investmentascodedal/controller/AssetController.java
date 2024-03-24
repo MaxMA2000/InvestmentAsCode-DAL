@@ -5,9 +5,7 @@ import investmentascode.projects.investmentascodedal.exception.CustomException;
 import investmentascode.projects.investmentascodedal.model.Asset;
 import investmentascode.projects.investmentascodedal.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
