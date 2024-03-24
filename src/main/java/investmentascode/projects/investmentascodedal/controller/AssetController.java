@@ -1,6 +1,7 @@
 package investmentascode.projects.investmentascodedal.controller;
 
 
+import investmentascode.projects.investmentascodedal.exception.CustomException;
 import investmentascode.projects.investmentascodedal.model.Asset;
 import investmentascode.projects.investmentascodedal.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,25 +33,10 @@ public class AssetController {
     List<Asset> assets = assetRepository.findByType(type);
 
     if (assets.isEmpty()) {
-      String errorMessage = "Type " + type + " doesn't exist. Please check.";
-      ErrorResponse errorResponse = new ErrorResponse(errorMessage);
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+      throw new CustomException("Type " + type + " doesn't exist. Please check.");
     }
 
     return ResponseEntity.ok(assets);
-  }
-
-
-  private static class ErrorResponse {
-    private final String message;
-
-    public ErrorResponse(String message) {
-      this.message = message;
-    }
-
-    public String getMessage() {
-      return message;
-    }
   }
 
 
