@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class CustomExceptionHandler {
 
-  @ExceptionHandler(CustomException.class)
-  public ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
+  @ExceptionHandler(SearchKeyNotFoundException.class)
+  public ResponseEntity<ErrorResponse> handleCustomException(SearchKeyNotFoundException ex) {
     ErrorResponse errorResponse = new ErrorResponse(ex.getMessage());
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
   }

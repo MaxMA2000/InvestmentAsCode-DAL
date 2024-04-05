@@ -1,7 +1,7 @@
 package investmentascode.projects.investmentascodedal.controller;
 
 
-import investmentascode.projects.investmentascodedal.exception.CustomException;
+import investmentascode.projects.investmentascodedal.exception.SearchKeyNotFoundException;
 import investmentascode.projects.investmentascodedal.model.Stock;
 import investmentascode.projects.investmentascodedal.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class StockController {
   public ResponseEntity<?> getStocksById(@RequestParam("id") long id) {
     List<Stock> stocks = stockRepository.findByAssetId(id);
     if (stocks.isEmpty()) {
-      throw new CustomException("Asset ID " + id + " doesn't exist. Please check.");
+      throw new SearchKeyNotFoundException("Asset ID " + id + " doesn't exist. Please check.", HttpStatus.NOT_FOUND);
     }
     return ResponseEntity.ok(stocks);
   }
@@ -43,7 +43,7 @@ public class StockController {
   public ResponseEntity<?> getStocksBySymbol(@RequestParam("symbol") String symbol) {
     List<Stock> stocks = stockRepository.findBySymbol(symbol);
     if (stocks.isEmpty()) {
-      throw new CustomException("Symbol " + symbol + " doesn't exist. Please check.");
+      throw new SearchKeyNotFoundException("Symbol " + symbol + " doesn't exist. Please check.", HttpStatus.NOT_FOUND);
     }
     return ResponseEntity.ok(stocks);
   }
