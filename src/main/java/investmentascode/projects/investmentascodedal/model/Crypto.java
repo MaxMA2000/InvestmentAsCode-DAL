@@ -13,6 +13,7 @@ import java.util.Date;
 public class Crypto {
 
   @Id
+  private Long id;
   private Long assetId;
   private String symbol;
   private Date date;
