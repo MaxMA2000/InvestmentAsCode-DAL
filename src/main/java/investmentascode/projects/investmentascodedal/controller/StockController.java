@@ -32,8 +32,8 @@ public class StockController {
     return stockRepository.findAll();
   }
 
-  @GetMapping("/byId")
-  public ResponseEntity<?> getStocksById(@RequestParam("id") long id) {
+  @GetMapping("/byAssetId")
+  public ResponseEntity<?> getStocksById(@RequestParam("asset_id") long id) {
     List<Stock> stocks = stockRepository.findByAssetId(id);
     if (stocks.isEmpty()) {
       throw new SearchKeyNotFoundException("Asset ID " + id + " doesn't exist. Please check.", HttpStatus.NOT_FOUND);

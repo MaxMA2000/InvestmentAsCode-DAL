@@ -35,8 +35,8 @@ public class CryptoController {
   }
 
 
-  @GetMapping("/byId")
-  public ResponseEntity<?> getStocksById(@RequestParam("id") long id) {
+  @GetMapping("/byAssetId")
+  public ResponseEntity<?> getStocksById(@RequestParam("asset_id") long id) {
     List<Crypto> cryptos = cryptoRepository.findByAssetId(id);
     if (cryptos.isEmpty()) {
       throw new SearchKeyNotFoundException("Asset ID " + id + " doesn't exist in Crypto Table. Please check.", HttpStatus.NOT_FOUND);
