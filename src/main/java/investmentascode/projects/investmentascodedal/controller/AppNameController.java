@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/app-name")
+@RequestMapping("/")
 public class AppNameController {
 
   @GetMapping
